@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
+import { AuthContext } from "../../Context/AuthProvider";
 
 const Signup = () => {
   const {
@@ -8,9 +10,44 @@ const Signup = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
+  const { createUser, googleSignIn } = useContext(AuthContext);
 
-  const handleRegister = (data) => {
-    console.log(data);
+  const handleRegister = (data, e) => {
+    createUser(data.email, data.password)
+      .then((res) => {
+        saveUserInDB(data.name, data.email, data.role, e);
+        e.target.reset();
+      })
+      .catch((err) => {
+        toast.error(err.message);
+      });
+  };
+
+  const handleGoogleSignin = () => {
+    googleSignIn()
+      .then((res) => {
+        const user = res.user;
+        console.log(user);
+        saveUserInDB(user.displayName, user.email, "Buyer");
+      })
+      .catch((err) => toast.error(err.message));
+  };
+
+  const saveUserInDB = (name, email, role) => {
+    const user = { name, email, role };
+    fetch("http://localhost:5000/users", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(user),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.acknowledged) {
+          toast.success("Successfully User Created");
+        }
+      });
   };
 
   return (
@@ -91,7 +128,10 @@ const Signup = () => {
           </Link>
         </p>
         <div className="divider">OR</div>
-        <button className="btn btn-outline w-full max-w-xs">
+        <button
+          onClick={handleGoogleSignin}
+          className="btn btn-outline w-full max-w-xs"
+        >
           CONTINUE WITH GOOGLE
         </button>
       </div>

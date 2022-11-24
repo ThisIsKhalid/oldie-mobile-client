@@ -1,6 +1,8 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import React from "react";
 import ReactDOM from "react-dom/client";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import App from "./App";
 import AuthProvider from "./Context/AuthProvider";
 import "./index.css";
@@ -13,6 +15,7 @@ root.render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
+        <ToastContainer position="top-right" autoClose={1000} />
         <App />
       </AuthProvider>
     </QueryClientProvider>
