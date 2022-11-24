@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
+import { saveUserInDB } from "../../Components/saveUserInDB";
 import { AuthContext } from "../../Context/AuthProvider";
 
 const Signup = () => {
@@ -10,13 +11,20 @@ const Signup = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const { createUser, googleSignIn } = useContext(AuthContext);
+  const { createUser, updateUserProfile, googleSignIn } =
+    useContext(AuthContext);
 
   const handleRegister = (data, e) => {
     createUser(data.email, data.password)
-      .then((res) => {
-        saveUserInDB(data.name, data.email, data.role, e);
-        e.target.reset();
+      .then(() => {
+        updateUserProfile(data.name)
+          .then(() => {
+            saveUserInDB(data.name, data.email, data.role);
+            e.target.reset();
+          })
+          .catch((err) => {
+            toast.error(err.message);
+          });
       })
       .catch((err) => {
         toast.error(err.message);
@@ -27,27 +35,9 @@ const Signup = () => {
     googleSignIn()
       .then((res) => {
         const user = res.user;
-        console.log(user);
         saveUserInDB(user.displayName, user.email, "Buyer");
       })
       .catch((err) => toast.error(err.message));
-  };
-
-  const saveUserInDB = (name, email, role) => {
-    const user = { name, email, role };
-    fetch("http://localhost:5000/users", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(user),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.acknowledged) {
-          toast.success("Successfully User Created");
-        }
-      });
   };
 
   return (

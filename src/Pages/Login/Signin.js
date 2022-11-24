@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
+import { saveUserInDB } from "../../Components/saveUserInDB";
+import { AuthContext } from "../../Context/AuthProvider";
 
 const Signin = () => {
   const {
@@ -8,10 +11,28 @@ const Signin = () => {
     formState: { errors },
     handleSubmit,
   } = useForm();
+  const { logIn, googleSignIn } = useContext(AuthContext);
 
-  const handleLogin = data => {
-    console.log(data);
-  }
+  const handleLogin = (data, e) => {
+    logIn(data.email, data.password)
+    .then(res => {
+      toast.success(`Welcome back ${res.user.displayName}`);
+      e.target.reset();
+    })
+    .catch(err => {
+      toast.error(err.message)
+    })
+  };
+
+  const handleGoogleSignin = () => {
+    googleSignIn()
+      .then((res) => {
+        const user = res.user;
+        saveUserInDB(user.displayName, user.email, "Buyer");
+      })
+      .catch((err) => toast.error(err.message));
+  };
+
 
   return (
     <div className="m-5 flex items-center justify-center">
@@ -70,7 +91,10 @@ const Signin = () => {
           </Link>
         </p>
         <div className="divider">OR</div>
-        <button className="btn btn-outline w-full max-w-xs">
+        <button
+          onClick={handleGoogleSignin}
+          className="btn btn-outline w-full max-w-xs"
+        >
           CONTINUE WITH GOOGLE
         </button>
       </div>
