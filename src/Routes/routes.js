@@ -55,6 +55,10 @@ const router = createBrowserRouter([
     ),
     children: [
       {
+        path: '/dashboard',
+        element: <h1>Heloo World</h1>
+      },
+      {
         path: "/dashboard/myorders",
         element: <MyOrders></MyOrders>,
       },
