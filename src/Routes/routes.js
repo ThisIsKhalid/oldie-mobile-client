@@ -4,6 +4,7 @@ import Home from "../Pages/Home/Home/Home";
 import Signin from "../Pages/Login/Signin";
 import Signup from "../Pages/Login/Signup";
 import PhonesByCategory from "../Pages/Phones/PhonesByCategory/PhonesByCategory";
+import PrivateRoutes from "./PrivateRoutes";
 
 const router = createBrowserRouter([
   {
@@ -20,7 +21,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/categories/:category",
-        element: <PhonesByCategory></PhonesByCategory>,
+        element: (
+          <PrivateRoutes>
+            <PhonesByCategory></PhonesByCategory>
+          </PrivateRoutes>
+        ),
       },
       {
         path: "/signin",
