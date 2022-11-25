@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { AuthContext } from "../../../Context/AuthProvider";
 
-const BookingModal = ({ product }) => {
+const BookingModal = ({ product, setProduct }) => {
   const { user } = useContext(AuthContext);
   const { name, resalePrice } = product;
   const handleSubmitModal = (event) => {
@@ -10,6 +10,8 @@ const BookingModal = ({ product }) => {
     const phone = form.phone.value;
     const location = form.location.value;
     console.log(phone, location);
+    form.reset();
+    setProduct(null)
   };
   return (
     <>
@@ -51,11 +53,13 @@ const BookingModal = ({ product }) => {
             <input
               type="text"
               name="phone"
+              required
               placeholder="Phone"
               className="input w-full input-bordered"
             />
             <input
               type="text"
+              required
               name="location"
               placeholder="Your Location"
               className="input w-full input-bordered"
