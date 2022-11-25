@@ -13,6 +13,7 @@ import Signup from "../Pages/Login/Signup";
 import PhonesByCategory from "../Pages/Phones/PhonesByCategory/PhonesByCategory";
 import AdminRoute from "./AdminRoute";
 import PrivateRoutes from "./PrivateRoutes";
+import SellerRoute from "./SellerRoute";
 
 const router = createBrowserRouter([
   {
@@ -59,11 +60,19 @@ const router = createBrowserRouter([
       },
       {
         path: "/dashboard/addproducts",
-        element: <AddProduct></AddProduct>,
+        element: (
+          <SellerRoute>
+            <AddProduct></AddProduct>
+          </SellerRoute>
+        ),
       },
       {
         path: "/dashboard/myproducts",
-        element: <MyProducts></MyProducts>,
+        element: (
+          <SellerRoute>
+            <MyProducts></MyProducts>
+          </SellerRoute>
+        ),
       },
       {
         path: "/dashboard/allbuyers",
