@@ -1,11 +1,13 @@
 import { useQuery } from "@tanstack/react-query";
-import React from "react";
+import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import Loading from "../../Others/Loading";
+import BookingModal from "../BookingModal/BookingModal";
 import Phone from "./Phone";
 
 const PhonesByCategory = () => {
   const { category } = useParams();
+  const [product, setProduct] = useState({});
 
   const { data: phones = [], isLoading } = useQuery({
     queryKey: ["phones"],
@@ -16,8 +18,8 @@ const PhonesByCategory = () => {
     },
   });
 
-  if(isLoading){
-    return <Loading></Loading>
+  if (isLoading) {
+    return <Loading></Loading>;
   }
 
   return (
@@ -30,9 +32,14 @@ const PhonesByCategory = () => {
       </h1>
       <div className="grid md:grid-cols-2 gap-5 my-10 px-5">
         {phones?.map((phone) => (
-          <Phone key={phone._id} phone={phone}></Phone>
+          <Phone
+            key={phone._id}
+            phone={phone}
+            setProduct={setProduct}
+          ></Phone>
         ))}
       </div>
+      <BookingModal product={product}></BookingModal>
     </div>
   );
 };

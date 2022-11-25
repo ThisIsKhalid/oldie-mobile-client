@@ -6,7 +6,7 @@ const Banner = () => {
   return (
     <div className="carousel w-full">
       <div id="slide1" className="carousel-item relative w-full">
-        <div className="bg-gradient-to-r from-accent to-neutral  w-full flex md:flex-row flex-col-reverse justify-center items-center px-5">
+        <div className="bg-gradient-to-r from-accent to-error  w-full flex md:flex-row flex-col-reverse justify-center items-center px-5">
           <div className="lg:w-1/2">
             <h1 className=" text-4xl font-medium">
               Buy{" "}

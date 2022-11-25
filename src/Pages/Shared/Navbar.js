@@ -57,7 +57,7 @@ const Navbar = () => {
           </ul>
         </div>
         <Link to="/" className="text-2xl font-bold">
-          <span className="text-neutral">Oldie</span>{" "}
+          <span className="text-error">Oldie</span>{" "}
           <span className="text-secondary">Mobile</span>
         </Link>
       </div>

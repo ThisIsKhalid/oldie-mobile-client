@@ -1,6 +1,6 @@
 import React from "react";
 
-const Phone = ({ phone }) => {
+const Phone = ({ phone, setProduct }) => {
   const {
     name,
     img,
@@ -30,6 +30,15 @@ const Phone = ({ phone }) => {
               <span className="text-neutral font-bold">{resalePrice}</span>
             </p>
             <p>Usage Time: {usageTime} Year</p>
+            <div className="mt-2">
+              <label
+                htmlFor="booking-modal"
+                onClick={() => setProduct(phone)}
+                className="btn btn-primary  text-white"
+              >
+                Book Now
+              </label>
+            </div>
           </div>
           <div>
             <p>Location: {location}</p>
