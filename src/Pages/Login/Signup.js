@@ -99,8 +99,8 @@ const Signup = () => {
               })}
               className="select select-bordered w-full max-w-xs"
             >
-              <option>Buyer</option>
-              <option>Seller</option>
+              <option>buyer</option>
+              <option>seller</option>
             </select>
           </div>
 

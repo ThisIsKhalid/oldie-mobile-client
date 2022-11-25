@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import { TfiViewList, TfiViewListAlt } from "react-icons/tfi";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../Context/AuthProvider";
 
@@ -12,6 +13,9 @@ const Navbar = () => {
       </li>
       {user?.email ? (
         <>
+          <li>
+            <Link to="/dashboard">Dashboard</Link>
+          </li>
           <li>
             <button onClick={logOut}>Sign Out</button>
           </li>
@@ -30,24 +34,11 @@ const Navbar = () => {
   );
 
   return (
-    <div className="navbar bg-base-200 justify-between lg:px-10">
+    <div className="navbar bg-white justify-between lg:px-10">
       <div className="navbar-start">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M4 6h16M4 12h8m-8 6h16"
-              />
-            </svg>
+            <TfiViewList className="text-xl text-gray-900" />
           </label>
           <ul
             tabIndex={0}
@@ -64,6 +55,13 @@ const Navbar = () => {
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal p-0">{menuItem}</ul>
       </div>
+      <label
+        htmlFor="dashboard-drawer"
+        tabIndex={3}
+        className="btn btn-ghost lg:hidden"
+      >
+        <TfiViewListAlt className="text-xl" />
+      </label>
     </div>
   );
 };
