@@ -45,6 +45,7 @@ const AddProduct = () => {
       sold: false,
       reported: false,
       verified: false,
+      advertise: false
     };
     // console.log(product);
 

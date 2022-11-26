@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
+import { toast } from "react-toastify";
 
 const MyProducts = () => {
   const { data: phones = [], refetch } = useQuery({
@@ -11,7 +12,18 @@ const MyProducts = () => {
     },
   });
 
-  //   refetch();
+  const handleAdvertise = (id) => {
+    fetch(`http://localhost:5000/phones/announce/${id}`, {
+      method: "PATCH",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.acknowledged) {
+          toast.success("Phone Advertised Successfully!");
+          refetch();
+        }
+      });
+  };
 
   return (
     <div className="overflow-x-auto w-full">
@@ -45,7 +57,7 @@ const MyProducts = () => {
                   Original Price: {phone.originalPrice}
                 </span>
               </td>
-              <td>
+              <td className="font-bold">
                 {phone.sold ? (
                   <span className="text-primary">Sold</span>
                 ) : (
@@ -53,9 +65,17 @@ const MyProducts = () => {
                 )}
               </td>
               <td>
-                {!phone.sold && (
-                  <button className="btn btn-primary btn-xs">Advertise</button>
-                )}
+                {!phone?.sold &&
+                  (phone.advertise ? (
+                    <span className="text-primary font-bold">Advertised</span>
+                  ) : (
+                    <button
+                      onClick={() => handleAdvertise(phone._id)}
+                      className="btn btn-primary btn-xs"
+                    >
+                      Advertise
+                    </button>
+                  ))}
               </td>
               <td>
                 <button className="btn btn-error btn-xs">Delete</button>
