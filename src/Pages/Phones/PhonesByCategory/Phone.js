@@ -1,16 +1,25 @@
 import React from "react";
 
-const Phone = ({ phone, setProduct }) => {
+const Phone = ({ phoneDetails, setProduct }) => {
   const {
     name,
+    sellerName,
+    email,
+    category,
+    condition,
     img,
     location,
     originalPrice,
-    postingDate,
     resalePrice,
-    sellerName,
-    usageTime,
-  } = phone;
+    phone,
+    purchaseDate,
+    postingDate,
+    description,
+    sold,
+    reported,
+    verified,
+    advertise,
+  } = phoneDetails;
   return (
     <div className="card card-compact bg-gray-100 shadow-xl border border-gray-100">
       <figure>
@@ -29,11 +38,11 @@ const Phone = ({ phone, setProduct }) => {
               Resale Price:{" "}
               <span className="text-neutral font-bold">{resalePrice}</span>
             </p>
-            <p>Usage Time: {usageTime} Year</p>
+            <p>Usage Time: Year</p>
             <div className="mt-2">
               <label
                 htmlFor="booking-modal"
-                onClick={() => setProduct(phone)}
+                onClick={() => setProduct(phoneDetails)}
                 className="btn btn-primary  text-white"
               >
                 Book Now
