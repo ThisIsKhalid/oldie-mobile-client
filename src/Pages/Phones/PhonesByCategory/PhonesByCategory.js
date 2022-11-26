@@ -2,8 +2,8 @@ import { useQuery } from "@tanstack/react-query";
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import Loading from "../../Others/Loading";
+import Phone from "../../Shared/Phone";
 import BookingModal from "../BookingModal/BookingModal";
-import Phone from "./Phone";
 
 const PhonesByCategory = () => {
   const { category } = useParams();
@@ -32,7 +32,11 @@ const PhonesByCategory = () => {
       </h1>
       <div className="grid md:grid-cols-2 gap-5 my-10 px-5">
         {phones?.map((phone) => (
-          <Phone key={phone._id} phoneDetails={phone} setProduct={setProduct}></Phone>
+          <Phone
+            key={phone._id}
+            phoneDetails={phone}
+            setProduct={setProduct}
+          ></Phone>
         ))}
       </div>
       {product && (
