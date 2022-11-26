@@ -31,7 +31,7 @@ const router = createBrowserRouter([
         element: <Home></Home>,
       },
       {
-        path: "/categories/:category",
+        path: "/categories/:brand",
         element: (
           <PrivateRoutes>
             <PhonesByCategory></PhonesByCategory>

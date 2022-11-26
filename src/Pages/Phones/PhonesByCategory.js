@@ -6,13 +6,13 @@ import BookingModal from "../Shared/BookingModal";
 import Phone from "../Shared/Phone";
 
 const PhonesByCategory = () => {
-  const { category } = useParams();
+  const { brand } = useParams();
   const [product, setProduct] = useState(null);
 
   const { data: phones = [], isLoading } = useQuery({
     queryKey: ["phones"],
     queryFn: async () => {
-      const res = await fetch(`http://localhost:5000/categories/${category}`);
+      const res = await fetch(`http://localhost:5000/categories/${brand}`);
       const data = res.json();
       return data;
     },
@@ -27,7 +27,7 @@ const PhonesByCategory = () => {
       <h1 className="text-3xl text-gray-800 font-medium text-center">
         Categories:{" "}
         <span className="text-secondary">
-          {category} (<small>{phones.length}</small>)
+          {brand} (<small>{phones.length}</small>)
         </span>
       </h1>
       <div className="grid md:grid-cols-2 gap-5 my-10 px-5">

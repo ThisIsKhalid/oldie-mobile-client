@@ -1,3 +1,4 @@
+import { useQuery } from "@tanstack/react-query";
 import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
@@ -13,6 +14,15 @@ const AddProduct = () => {
   const { user } = useContext(AuthContext);
   const date = new Date();
   const navigate = useNavigate();
+
+  const { data: categories = [] } = useQuery({
+    queryKey: ["categories"],
+    queryFn: async () => {
+      const res = await fetch("http://localhost:5000/categories");
+      const data = res.json();
+      return data;
+    },
+  });
 
   const getProductsData = (data) => {
     const {
@@ -45,7 +55,7 @@ const AddProduct = () => {
       sold: false,
       reported: false,
       verified: false,
-      advertise: false
+      advertise: false,
     };
     // console.log(product);
 
@@ -85,13 +95,17 @@ const AddProduct = () => {
               </div>
               <div className="form-control w-full max-w-xs">
                 <label className="label">
-                  <span className="label-text">Category</span>
+                  <span className="label-text">Please Choose your Brand</span>
                 </label>
-                <input
-                  type="text"
+                <select
+                  defaultValue="Others"
                   {...register("category", { required: true })}
-                  className="input input-bordered w-full max-w-xs"
-                />
+                  className="select select-bordered w-full max-w-xs"
+                >
+                  {categories.map((category) => (
+                    <option key={category._id}>{category?.brand}</option>
+                  ))}
+                </select>
               </div>
               <div className="form-control w-full max-w-xs">
                 <label className="label">
