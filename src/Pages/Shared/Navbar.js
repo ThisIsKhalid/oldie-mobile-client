@@ -37,11 +37,11 @@ const Navbar = () => {
     <div className="navbar bg-slate-100 justify-between lg:px-10">
       <div className="navbar-start">
         <div className="dropdown">
-          <label tabIndex={0} className="btn btn-ghost lg:hidden">
+          <label tabIndex={1} className="btn btn-ghost lg:hidden">
             <TfiViewList className="text-xl text-gray-900" />
           </label>
           <ul
-            tabIndex={0}
+            tabIndex={2}
             className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
           >
             {menuItem}

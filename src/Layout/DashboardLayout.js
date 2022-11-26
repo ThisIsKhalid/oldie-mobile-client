@@ -18,7 +18,7 @@ const DashboardLayout = () => {
   return (
     <div>
       <Navbar></Navbar>
-      <div className="drawer drawer-mobile border-t">
+      <div className="drawer drawer-mobile">
         <input
           id="dashboard-drawer"
           type="checkbox"
@@ -29,7 +29,7 @@ const DashboardLayout = () => {
         </div>
         <div className="drawer-side border-r">
           <label htmlFor="dashboard-drawer" className="drawer-overlay"></label>
-          <ul className="menu p-4 w-80 text-base-content">
+          <ul className="menu p-4 w-48 bg-slate-100 text-gray-800 font-medium uppercase">
             {isBuyer && (
               <>
                 <li>
