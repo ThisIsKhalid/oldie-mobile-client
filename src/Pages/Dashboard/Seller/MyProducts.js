@@ -1,12 +1,17 @@
 import { useQuery } from "@tanstack/react-query";
-import React from "react";
+import React, { useContext } from "react";
 import { toast } from "react-toastify";
+import { AuthContext } from "../../../Context/AuthProvider";
 
 const MyProducts = () => {
+  const { user } = useContext(AuthContext);
+
   const { data: phones = [], refetch } = useQuery({
     queryKey: ["phones"],
     queryFn: async () => {
-      const res = await fetch(`http://localhost:5000/phones?email=jq@jd.com`);
+      const res = await fetch(
+        `http://localhost:5000/phones?email=${user?.email}`
+      );
       const data = await res.json();
       return data;
     },
@@ -19,7 +24,7 @@ const MyProducts = () => {
       .then((res) => res.json())
       .then((data) => {
         if (data.acknowledged) {
-          toast.success("Phone Advertised Successfully!");
+          toast.success("Product Advertised Successfully!");
           refetch();
         }
       });
@@ -27,12 +32,15 @@ const MyProducts = () => {
 
   const handlePhoneDelete = (id) => {
     fetch(`http://localhost:5000/phones/${id}`, {
-      method: 'DELETE',
+      method: "DELETE",
     })
-    .then(res => res.json())
-    .then(data => {
-      console.log(data);
-    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.acknowledged) {
+          toast.success("Product Deleted!");
+          refetch();
+        }
+      });
   };
 
   return (

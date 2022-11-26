@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { saveUserInDB } from "../../Components/saveUserInDB";
 import { AuthContext } from "../../Context/AuthProvider";
@@ -13,6 +13,7 @@ const Signup = () => {
   } = useForm();
   const { createUser, updateUserProfile, googleSignIn } =
     useContext(AuthContext);
+  const navigate = useNavigate();
 
   const handleRegister = (data, e) => {
     createUser(data.email, data.password)
@@ -20,6 +21,7 @@ const Signup = () => {
         updateUserProfile(data.name)
           .then(() => {
             saveUserInDB(data.name, data.email, data.role);
+            navigate("/");
             e.target.reset();
           })
           .catch((err) => {
