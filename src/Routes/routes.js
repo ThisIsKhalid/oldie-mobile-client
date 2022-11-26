@@ -10,7 +10,8 @@ import MyProducts from "../Pages/Dashboard/Seller/MyProducts";
 import Home from "../Pages/Home/Home/Home";
 import Signin from "../Pages/Login/Signin";
 import Signup from "../Pages/Login/Signup";
-import PhonesByCategory from "../Pages/Phones/PhonesByCategory/PhonesByCategory";
+import PhonesByCategory from "../Pages/Phones/PhonesByCategory";
+import DisplayError from "../Pages/Shared/DisplayError";
 import AdminRoute from "./AdminRoute";
 import PrivateRoutes from "./PrivateRoutes";
 import SellerRoute from "./SellerRoute";
@@ -19,6 +20,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout></MainLayout>,
+    errorElement: <DisplayError></DisplayError>,
     children: [
       {
         path: "/",
@@ -53,10 +55,11 @@ const router = createBrowserRouter([
         <DashboardLayout></DashboardLayout>
       </PrivateRoutes>
     ),
+    errorElement: <DisplayError></DisplayError>,
     children: [
       {
-        path: '/dashboard',
-        element: <h1>Heloo World</h1>
+        path: "/dashboard",
+        element: <h1>Heloo World</h1>,
       },
       {
         path: "/dashboard/myorders",

@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { AuthContext } from "../../../Context/AuthProvider";
+import { AuthContext } from "../../Context/AuthProvider";
 
 const BookingModal = ({ product, setProduct }) => {
   const { user } = useContext(AuthContext);
@@ -11,7 +11,7 @@ const BookingModal = ({ product, setProduct }) => {
     const location = form.location.value;
     console.log(phone, location);
     form.reset();
-    setProduct(null)
+    setProduct(null);
   };
   return (
     <>

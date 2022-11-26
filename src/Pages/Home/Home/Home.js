@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import React, { useContext, useState } from "react";
 import { AuthContext } from "../../../Context/AuthProvider";
 import Loading from "../../Others/Loading";
-import BookingModal from "../../Phones/BookingModal/BookingModal";
+import BookingModal from "../../Shared/BookingModal";
 import Phone from "../../Shared/Phone";
 import Banner from "../Banner/Banner";
 import Categories from "../Categories/Categories";

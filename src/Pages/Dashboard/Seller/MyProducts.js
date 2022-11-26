@@ -25,6 +25,16 @@ const MyProducts = () => {
       });
   };
 
+  const handlePhoneDelete = (id) => {
+    fetch(`http://localhost:5000/phones/${id}`, {
+      method: 'DELETE',
+    })
+    .then(res => res.json())
+    .then(data => {
+      console.log(data);
+    })
+  };
+
   return (
     <div className="overflow-x-auto w-full">
       <table className="table w-full">
@@ -78,7 +88,12 @@ const MyProducts = () => {
                   ))}
               </td>
               <td>
-                <button className="btn btn-error btn-xs">Delete</button>
+                <button
+                  onClick={() => handlePhoneDelete(phone._id)}
+                  className="btn btn-error btn-xs"
+                >
+                  Delete
+                </button>
               </td>
             </tr>
           ))}

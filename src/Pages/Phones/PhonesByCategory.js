@@ -1,9 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
-import Loading from "../../Others/Loading";
-import Phone from "../../Shared/Phone";
-import BookingModal from "../BookingModal/BookingModal";
+import Loading from "../Others/Loading";
+import BookingModal from "../Shared/BookingModal";
+import Phone from "../Shared/Phone";
 
 const PhonesByCategory = () => {
   const { category } = useParams();
