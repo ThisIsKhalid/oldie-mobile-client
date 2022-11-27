@@ -32,11 +32,11 @@ const Home = () => {
 
       {/* ----------advertised section----------------- */}
       {advertisedPhones?.length && (
-        <section>
+        <section className="my-10">
           <h1 className="text-gray-700 text-3xl font-bold text-center mb-5">
             Featured Products
           </h1>
-          <div className="grid grid-cols-2 gap-10 mx-10">
+          <div className="grid lg:grid-cols-2 grid-cols-1 gap-10 mx-5">
             {advertisedPhones?.map((phoneDetails) => (
               <Phone
                 key={phoneDetails._id}

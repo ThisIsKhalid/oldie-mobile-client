@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { TfiViewList, TfiViewListAlt } from "react-icons/tfi";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../Context/AuthProvider";
+import img from '../../Assets/mobile-app (1).png'
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -47,13 +48,16 @@ const Navbar = () => {
             {menuItem}
           </ul>
         </div>
-        <Link to="/" className="text-2xl font-bold">
-          <span className="text-error">Oldie</span>{" "}
-          <span className="text-secondary">Mobile</span>
-        </Link>
+        <div className="flex items-center">
+          <img className="w-14" src={img} alt="" />
+          <Link to="/" className="text-2xl font-bold">
+            <span className="text-error">Oldie</span>{" "}
+            <span className="text-secondary">Mobile</span>
+          </Link>
+        </div>
       </div>
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal p-0">{menuItem}</ul>
+        <ul className="menu menu-horizontal p-0 text-lg font-semibold">{menuItem}</ul>
       </div>
       <label
         htmlFor="dashboard-drawer"
