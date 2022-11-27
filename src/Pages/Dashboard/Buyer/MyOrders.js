@@ -1,11 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
 import React, { useContext } from "react";
+import { toast } from "react-toastify";
 import { AuthContext } from "../../../Context/AuthProvider";
 
 const MyOrders = () => {
   const { user } = useContext(AuthContext);
 
-  const { data: myOrders = [] } = useQuery({
+  const { data: myOrders = [], refetch } = useQuery({
     queryKey: ["myorders"],
     queryFn: async () => {
       const res = await fetch(
@@ -20,7 +21,16 @@ const MyOrders = () => {
     console.log(productId);
   };
   const handlePhoneDelete = (id) => {
-    console.log(id);
+    fetch(`http://localhost:5000/myorders/${id}`, {
+      method: "DELETE",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.acknowledged) {
+          toast.success("Product Deleted Successfully!");
+          refetch();
+        }
+      });
   };
 
   return (
