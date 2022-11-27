@@ -1,11 +1,73 @@
-import React from 'react';
+import { useQuery } from "@tanstack/react-query";
+import React from "react";
+import Loading from "../../Others/Loading";
 
 const AllSellers = () => {
-    return (
-        <div>
-            <h1>all sellers</h1>
-        </div>
-    );
+  const { data: sellers = [], isLoading } = useQuery({
+    queryKey: ["sellers"],
+    queryFn: async () => {
+      const res = await fetch("http://localhost:5000/admin/users/sellers");
+      const data = res.json();
+      return data;
+    },
+  });
+
+  const handleSellerDelete = (id) => {
+    console.log(id);
+  };
+
+  const handleSellerVerify = (id) => {
+    console.log(id);
+  };
+
+  if (isLoading) {
+    return <Loading></Loading>;
+  }
+  return (
+    <div className="overflow-x-auto w-full">
+      <h1 className="text-3xl font-bold text-center text-primary my-5">
+        All Sellers
+      </h1>
+      <table className="table w-full rounded-none">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Verify</th>
+            <th>Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          {sellers?.map((seller) => (
+            <tr key={seller._id}>
+              <td className="font-bold">{seller.name}</td>
+              <td>{seller.email}</td>
+              <td>
+                {seller?.status ? (
+                  <span className="font-semibold text-primary">Verified</span>
+                ) : (
+                  <button
+                    onClick={() => handleSellerVerify(seller._id)}
+                    className="btn btn-primary btn-xs"
+                  >
+                    Verify
+                  </button>
+                )}
+              </td>
+              <td>
+                <button
+                  onClick={() => handleSellerDelete(seller._id)}
+                  className="btn btn-error btn-xs"
+                >
+                  Delete
+                </button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
 };
 
 export default AllSellers;
