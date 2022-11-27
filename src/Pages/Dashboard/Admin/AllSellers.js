@@ -1,9 +1,14 @@
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
+import { toast } from "react-toastify";
 import Loading from "../../Others/Loading";
 
 const AllSellers = () => {
-  const { data: sellers = [], isLoading } = useQuery({
+  const {
+    data: sellers = [],
+    isLoading,
+    refetch,
+  } = useQuery({
     queryKey: ["sellers"],
     queryFn: async () => {
       const res = await fetch("http://localhost:5000/admin/users/sellers");
@@ -16,8 +21,17 @@ const AllSellers = () => {
     console.log(id);
   };
 
-  const handleSellerVerify = (id) => {
-    console.log(id);
+  const handleSellerVerify = (email) => {
+    fetch(`http://localhost:5000/users/seller/${email}`, {
+      method: "PUT",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.existingUser.acknowledged) {
+          toast.success("User verified successfully!!");
+          refetch();
+        }
+      });
   };
 
   if (isLoading) {
@@ -43,11 +57,11 @@ const AllSellers = () => {
               <td className="font-bold">{seller.name}</td>
               <td>{seller.email}</td>
               <td>
-                {seller?.status ? (
+                {seller?.verified ? (
                   <span className="font-semibold text-primary">Verified</span>
                 ) : (
                   <button
-                    onClick={() => handleSellerVerify(seller._id)}
+                    onClick={() => handleSellerVerify(seller?.email)}
                     className="btn btn-primary btn-xs"
                   >
                     Verify
