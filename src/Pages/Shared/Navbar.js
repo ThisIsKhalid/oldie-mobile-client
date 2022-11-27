@@ -12,6 +12,9 @@ const Navbar = () => {
       <li>
         <Link to="/home">Home</Link>
       </li>
+      <li>
+        <Link to="/blog">Blog</Link>
+      </li>
       {user?.email ? (
         <>
           <li>
