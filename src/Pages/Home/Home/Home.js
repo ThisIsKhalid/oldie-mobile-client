@@ -6,6 +6,7 @@ import BookingModal from "../../Shared/BookingModal";
 import Phone from "../../Shared/Phone";
 import Banner from "../Banner/Banner";
 import Categories from "../Categories/Categories";
+import Newsletter from "../Newsletter/Newsletter";
 
 const Home = () => {
   const { loading } = useContext(AuthContext);
@@ -50,6 +51,8 @@ const Home = () => {
       {product && (
         <BookingModal product={product} setProduct={setProduct}></BookingModal>
       )}
+
+      <Newsletter></Newsletter>
     </>
   );
 };

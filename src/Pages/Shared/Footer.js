@@ -1,11 +1,12 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import img from '../../Assets/mobile-app (1).png'
 
 const Footer = () => {
     return (
       <footer className="footer p-10 bg-gradient-to-r from-slate-100 to-slate-300 text-gray-900">
         <div>
-          <img className='w-16' src={img} alt="" />
+          <img className="w-16" src={img} alt="" />
           <p className="text-xl font-bold">
             <span className="text-error">Oldie</span>{" "}
             <span className="text-secondary">Mobile</span>
@@ -14,20 +15,20 @@ const Footer = () => {
         </div>
         <div>
           <span className="footer-title">Services</span>
-          <a className="link link-hover">Branding</a>
-          <a className="link link-hover">Marketing</a>
-          <a className="link link-hover">Advertisement</a>
+          <Link className="link link-hover">Branding</Link>
+          <Link className="link link-hover">Marketing</Link>
+          <Link className="link link-hover">Advertisement</Link>
         </div>
         <div>
           <span className="footer-title">Legal</span>
-          <a className="link link-hover">Terms of use</a>
-          <a className="link link-hover">Privacy policy</a>
-          <a className="link link-hover">Cookie policy</a>
+          <Link className="link link-hover">Terms of use</Link>
+          <Link className="link link-hover">Privacy policy</Link>
+          <Link className="link link-hover">Cookie policy</Link>
         </div>
         <div>
           <span className="footer-title">Company</span>
-          <a className="link link-hover">About us</a>
-          <a className="link link-hover">Contact</a>
+          <Link className="link link-hover">About us</Link>
+          <Link className="link link-hover">Contact</Link>
         </div>
       </footer>
     );
