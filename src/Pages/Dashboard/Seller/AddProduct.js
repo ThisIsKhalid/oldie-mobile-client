@@ -15,6 +15,17 @@ const AddProduct = () => {
   const date = new Date();
   const navigate = useNavigate();
 
+  const { data: dbUser = {} } = useQuery({
+    queryKey: ["dbUser"],
+    queryFn: async () => {
+      const res = await fetch(
+        `http://localhost:5000/users/isVerfied/${user?.email}`
+      );
+      const data = res.json();
+      return data;
+    },
+  });
+
   const { data: categories = [] } = useQuery({
     queryKey: ["categories"],
     queryFn: async () => {
@@ -40,7 +51,7 @@ const AddProduct = () => {
 
     const product = {
       name,
-      sellerName: user.displayName,
+      sellerName: user?.displayName,
       email: user?.email,
       category: category,
       condition: condition,
@@ -54,7 +65,7 @@ const AddProduct = () => {
       description,
       sold: false,
       reported: false,
-      verified: false,
+      verified: dbUser?.verified,
       advertise: false,
     };
     // console.log(product);
