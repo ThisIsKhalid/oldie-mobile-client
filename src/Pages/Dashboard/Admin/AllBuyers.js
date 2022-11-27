@@ -1,9 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
+import { toast } from "react-toastify";
 import Loading from "../../Others/Loading";
 
 const AllBuyers = () => {
-  const { data: buyers = [], isLoading } = useQuery({
+  const { data: buyers = [], isLoading, refetch } = useQuery({
     queryKey: ["buyers"],
     queryFn: async () => {
       const res = await fetch("http://localhost:5000/admin/users/buyers");
@@ -13,7 +14,16 @@ const AllBuyers = () => {
   });
 
   const handlebuyerDelete = (id) => {
-    console.log(id);
+    fetch(`http://localhost:5000/admin/users/buyers/${id}`, {
+      method: 'DELETE'
+    })
+    .then(res => res.json())
+    .then(data => {
+      if (data.acknowledged) {
+        toast.success("Buyers Deleted!");
+        refetch();
+      }
+    })
   };
 
   if (isLoading) {

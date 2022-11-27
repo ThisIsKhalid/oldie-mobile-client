@@ -18,7 +18,16 @@ const AllSellers = () => {
   });
 
   const handleSellerDelete = (id) => {
-    console.log(id);
+    fetch(`http://localhost:5000/admin/users/sellers/${id}`, {
+      method: "DELETE",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.acknowledged) {
+          toast.success("Sellers Deleted!");
+          refetch();
+        }
+      });
   };
 
   const handleSellerVerify = (email) => {
