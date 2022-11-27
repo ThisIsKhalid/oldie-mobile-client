@@ -1,17 +1,42 @@
 import React, { useContext } from "react";
+import { toast } from "react-toastify";
 import { AuthContext } from "../../Context/AuthProvider";
 
 const BookingModal = ({ product, setProduct }) => {
   const { user } = useContext(AuthContext);
-  const { name, resalePrice } = product;
+  const { _id, name, img, resalePrice } = product;
+
   const handleSubmitModal = (event) => {
     event.preventDefault();
     const form = event.target;
     const phone = form.phone.value;
     const location = form.location.value;
-    console.log(phone, location);
-    form.reset();
-    setProduct(null);
+
+    const orderData = {
+      email: user?.email,
+      title: name,
+      productId: _id,
+      img: img,
+      price: resalePrice,
+      phone: phone,
+      location: location,
+    };
+
+    fetch("http://localhost:5000/myorders", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(orderData),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.acknowledged) {
+          toast.success("Order Successfully booked");
+          form.reset();
+          setProduct(null);
+        }
+      });
   };
   return (
     <>
