@@ -11,23 +11,29 @@ const AllSellers = () => {
   } = useQuery({
     queryKey: ["sellers"],
     queryFn: async () => {
-      const res = await fetch("http://localhost:5000/admin/users/sellers", {
-        headers: {
-          authorization: `bearer ${localStorage.getItem("accessToken")}`,
-        },
-      });
+      const res = await fetch(
+        "https://b612-used-products-resale-server-side-this-is-khalid.vercel.app/admin/users/sellers",
+        {
+          headers: {
+            authorization: `bearer ${localStorage.getItem("accessToken")}`,
+          },
+        }
+      );
       const data = res.json();
       return data;
     },
   });
 
   const handleSellerDelete = (id) => {
-    fetch(`http://localhost:5000/admin/users/sellers/${id}`, {
-      method: "DELETE",
-      headers: {
-        authorization: `bearer ${localStorage.getItem("accessToken")}`,
-      },
-    })
+    fetch(
+      `https://b612-used-products-resale-server-side-this-is-khalid.vercel.app/admin/users/sellers/${id}`,
+      {
+        method: "DELETE",
+        headers: {
+          authorization: `bearer ${localStorage.getItem("accessToken")}`,
+        },
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data.acknowledged) {
@@ -38,12 +44,15 @@ const AllSellers = () => {
   };
 
   const handleSellerVerify = (email) => {
-    fetch(`http://localhost:5000/users/seller/${email}`, {
-      method: "PUT",
-      headers: {
-        authorization: `bearer ${localStorage.getItem("accessToken")}`,
-      },
-    })
+    fetch(
+      `https://b612-used-products-resale-server-side-this-is-khalid.vercel.app/users/seller/${email}`,
+      {
+        method: "PUT",
+        headers: {
+          authorization: `bearer ${localStorage.getItem("accessToken")}`,
+        },
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data.existingUser.acknowledged) {
@@ -58,9 +67,7 @@ const AllSellers = () => {
   }
   return (
     <div className="overflow-x-auto w-full">
-      <h1 className="text-3xl font-bold text-primary my-5">
-        All Sellers :
-      </h1>
+      <h1 className="text-3xl font-bold text-primary my-5">All Sellers :</h1>
       <table className="table w-full rounded-none">
         <thead>
           <tr>

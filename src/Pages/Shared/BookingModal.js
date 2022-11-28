@@ -6,7 +6,7 @@ import useUsers from "../../hooks/useUsers";
 const BookingModal = ({ product, setProduct }) => {
   const { user } = useContext(AuthContext);
   const { _id, name, img, resalePrice } = product;
-  const {isBuyer} = useUsers(user?.email);
+  const { isBuyer } = useUsers(user?.email);
 
   const handleSubmitModal = (event) => {
     event.preventDefault();
@@ -14,7 +14,7 @@ const BookingModal = ({ product, setProduct }) => {
     const phone = form.phone.value;
     const location = form.location.value;
 
-    if(user && isBuyer){
+    if (user && isBuyer) {
       const orderData = {
         email: user?.email,
         title: name,
@@ -25,14 +25,17 @@ const BookingModal = ({ product, setProduct }) => {
         location: location,
       };
 
-      fetch("http://localhost:5000/myorders", {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
-          authorization: `bearer ${localStorage.getItem("accessToken")}`,
-        },
-        body: JSON.stringify(orderData),
-      })
+      fetch(
+        "https://b612-used-products-resale-server-side-this-is-khalid.vercel.app/myorders",
+        {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+            authorization: `bearer ${localStorage.getItem("accessToken")}`,
+          },
+          body: JSON.stringify(orderData),
+        }
+      )
         .then((res) => res.json())
         .then((data) => {
           if (data.acknowledged) {
@@ -42,7 +45,7 @@ const BookingModal = ({ product, setProduct }) => {
           }
         });
     } else {
-      toast.error("Please Login as a Buyer!!")
+      toast.error("Please Login as a Buyer!!");
     }
   };
   return (

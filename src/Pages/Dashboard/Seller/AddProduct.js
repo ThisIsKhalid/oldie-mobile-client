@@ -21,7 +21,7 @@ const AddProduct = () => {
     queryKey: ["dbUser"],
     queryFn: async () => {
       const res = await fetch(
-        `http://localhost:5000/users/isVerfied/${user?.email}`
+        `https://b612-used-products-resale-server-side-this-is-khalid.vercel.app/users/isVerfied/${user?.email}`
       );
       const data = res.json();
       return data;
@@ -31,7 +31,9 @@ const AddProduct = () => {
   const { data: categories = [] } = useQuery({
     queryKey: ["categories"],
     queryFn: async () => {
-      const res = await fetch("http://localhost:5000/categories");
+      const res = await fetch(
+        "https://b612-used-products-resale-server-side-this-is-khalid.vercel.app/categories"
+      );
       const data = res.json();
       return data;
     },
@@ -83,13 +85,16 @@ const AddProduct = () => {
             advertise: false,
           };
 
-          fetch("http://localhost:5000/phones", {
-            method: "POST",
-            headers: {
-              "content-type": "application/json",
-            },
-            body: JSON.stringify(product),
-          })
+          fetch(
+            "https://b612-used-products-resale-server-side-this-is-khalid.vercel.app/phones",
+            {
+              method: "POST",
+              headers: {
+                "content-type": "application/json",
+              },
+              body: JSON.stringify(product),
+            }
+          )
             .then((res) => res.json())
             .then((data) => {
               if (data.acknowledged) {

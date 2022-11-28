@@ -15,7 +15,9 @@ const Home = () => {
   const { data: advertisedPhones = [], isLoading } = useQuery({
     queryKey: ["advertised"],
     queryFn: async () => {
-      const res = await fetch("http://localhost:5000/phones/announce");
+      const res = await fetch(
+        "https://b612-used-products-resale-server-side-this-is-khalid.vercel.app/phones/announce"
+      );
       const data = await res.json();
       return data;
     },

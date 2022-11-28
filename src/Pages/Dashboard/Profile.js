@@ -9,7 +9,7 @@ const Profile = () => {
     queryKey: ["dbUser"],
     queryFn: async () => {
       const res = await fetch(
-        `http://localhost:5000/users/isVerfied/${user?.email}`
+        `https://b612-used-products-resale-server-side-this-is-khalid.vercel.app/users/isVerfied/${user?.email}`
       );
       const data = res.json();
       return data;
@@ -18,7 +18,7 @@ const Profile = () => {
 
   return (
     <div className="bg-gray-200 min-h-screen flex justify-center">
-      <div className="font-mono mt-10" >
+      <div className="font-mono mt-10">
         <h1 className="text-3xl font-semibold">
           Name: <span className="  text-primary">{user?.displayName}</span>
           <span className="text-base text-error">({dbUser?.role})</span>

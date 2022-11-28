@@ -10,7 +10,7 @@ const MyOrders = () => {
     queryKey: ["myorders"],
     queryFn: async () => {
       const res = await fetch(
-        `http://localhost:5000/myorders?email=${user?.email}`,
+        `https://b612-used-products-resale-server-side-this-is-khalid.vercel.app/myorders?email=${user?.email}`,
         {
           headers: {
             authorization: `bearer ${localStorage.getItem("accessToken")}`,
@@ -26,12 +26,15 @@ const MyOrders = () => {
     console.log(productId);
   };
   const handlePhoneDelete = (id) => {
-    fetch(`http://localhost:5000/myorders/${id}`, {
-      method: "DELETE",
-      headers: {
-        authorization: `bearer ${localStorage.getItem("accessToken")}`,
-      },
-    })
+    fetch(
+      `https://b612-used-products-resale-server-side-this-is-khalid.vercel.app/myorders/${id}`,
+      {
+        method: "DELETE",
+        headers: {
+          authorization: `bearer ${localStorage.getItem("accessToken")}`,
+        },
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data.acknowledged) {

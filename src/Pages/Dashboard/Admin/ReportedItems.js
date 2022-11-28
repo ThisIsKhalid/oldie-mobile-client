@@ -6,19 +6,24 @@ const ReportedItems = () => {
   const { data: products = [], refetch } = useQuery({
     queryKey: ["ReportedProduct"],
     queryFn: async () => {
-      const res = await fetch("http://localhost:5000/product/reported");
+      const res = await fetch(
+        "https://b612-used-products-resale-server-side-this-is-khalid.vercel.app/product/reported"
+      );
       const data = res.json();
       return data;
     },
   });
 
   const handleProductsDelete = (id) => {
-    fetch(`http://localhost:5000/product/reported/${id}`, {
-      method: "DELETE",
-      headers: {
-        authorization: `bearer ${localStorage.getItem("accessToken")}`,
-      },
-    })
+    fetch(
+      `https://b612-used-products-resale-server-side-this-is-khalid.vercel.app/product/reported/${id}`,
+      {
+        method: "DELETE",
+        headers: {
+          authorization: `bearer ${localStorage.getItem("accessToken")}`,
+        },
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data.deletedCount > 0) {

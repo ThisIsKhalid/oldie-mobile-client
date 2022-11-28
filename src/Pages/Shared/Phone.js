@@ -28,12 +28,15 @@ const Phone = ({ phoneDetails, setProduct }) => {
 
   const handleReportAdmin = (id) => {
     if (user && isBuyer) {
-      fetch(`http://localhost:5000/product/reported/${id}`, {
-        method: "PUT",
-        headers: {
-          authorization: `bearer ${localStorage.getItem("accessToken")}`,
-        },
-      })
+      fetch(
+        `https://b612-used-products-resale-server-side-this-is-khalid.vercel.app/product/reported/${id}`,
+        {
+          method: "PUT",
+          headers: {
+            authorization: `bearer ${localStorage.getItem("accessToken")}`,
+          },
+        }
+      )
         .then((res) => res.json())
         .then((data) => {
           if (data.modifiedCount > 0 || data.upsertedCount > 0) {

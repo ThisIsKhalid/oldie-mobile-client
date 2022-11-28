@@ -10,7 +10,7 @@ const MyProducts = () => {
     queryKey: ["phones"],
     queryFn: async () => {
       const res = await fetch(
-        `http://localhost:5000/phones?email=${user?.email}`
+        `https://b612-used-products-resale-server-side-this-is-khalid.vercel.app/phones?email=${user?.email}`
       );
       const data = await res.json();
       return data;
@@ -18,9 +18,12 @@ const MyProducts = () => {
   });
 
   const handleAdvertise = (id) => {
-    fetch(`http://localhost:5000/phones/announce/${id}`, {
-      method: "PATCH",
-    })
+    fetch(
+      `https://b612-used-products-resale-server-side-this-is-khalid.vercel.app/phones/announce/${id}`,
+      {
+        method: "PATCH",
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data.acknowledged) {
@@ -31,9 +34,12 @@ const MyProducts = () => {
   };
 
   const handlePhoneDelete = (id) => {
-    fetch(`http://localhost:5000/phones/${id}`, {
-      method: "DELETE",
-    })
+    fetch(
+      `https://b612-used-products-resale-server-side-this-is-khalid.vercel.app/phones/${id}`,
+      {
+        method: "DELETE",
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data.acknowledged) {

@@ -7,11 +7,14 @@ const useUsers = (email) => {
 
   useEffect(() => {
     if (email) {
-      fetch(`http://localhost:5000/users/${email}`, {
-        headers: {
-          authorization: `bearer ${localStorage.getItem("accessToken")}`,
-        },
-      })
+      fetch(
+        `https://b612-used-products-resale-server-side-this-is-khalid.vercel.app/users/${email}`,
+        {
+          headers: {
+            authorization: `bearer ${localStorage.getItem("accessToken")}`,
+          },
+        }
+      )
         .then((res) => res.json())
         .then((data) => {
           if (data.isSeller) {
