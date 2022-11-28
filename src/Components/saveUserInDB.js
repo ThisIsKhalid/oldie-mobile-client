@@ -6,6 +6,7 @@ export const saveUserInDB = (name, email, role, setUserEmail) => {
     method: "POST",
     headers: {
       "content-type": "application/json",
+      authorization: `bearer ${localStorage.getItem("accessToken")}`,
     },
     body: JSON.stringify(user),
   })

@@ -10,7 +10,12 @@ const MyOrders = () => {
     queryKey: ["myorders"],
     queryFn: async () => {
       const res = await fetch(
-        `http://localhost:5000/myorders?email=${user?.email}`
+        `http://localhost:5000/myorders?email=${user?.email}`,
+        {
+          headers: {
+            authorization: `bearer ${localStorage.getItem("accessToken")}`,
+          },
+        }
       );
       const data = res.json();
       return data;
@@ -23,6 +28,9 @@ const MyOrders = () => {
   const handlePhoneDelete = (id) => {
     fetch(`http://localhost:5000/myorders/${id}`, {
       method: "DELETE",
+      headers: {
+        authorization: `bearer ${localStorage.getItem("accessToken")}`,
+      },
     })
       .then((res) => res.json())
       .then((data) => {

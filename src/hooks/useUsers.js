@@ -7,12 +7,16 @@ const useUsers = (email) => {
 
   useEffect(() => {
     if (email) {
-      fetch(`http://localhost:5000/users/${email}`)
+      fetch(`http://localhost:5000/users/${email}`, {
+        headers: {
+          authorization: `bearer ${localStorage.getItem("accessToken")}`,
+        },
+      })
         .then((res) => res.json())
         .then((data) => {
           if (data.isSeller) {
             setIsSeller(data.isSeller);
-            setIsUsersLoading(false)
+            setIsUsersLoading(false);
           }
           if (data.isBuyer) {
             setIsBuyer(data.isBuyer);

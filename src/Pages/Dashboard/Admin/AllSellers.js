@@ -11,7 +11,11 @@ const AllSellers = () => {
   } = useQuery({
     queryKey: ["sellers"],
     queryFn: async () => {
-      const res = await fetch("http://localhost:5000/admin/users/sellers");
+      const res = await fetch("http://localhost:5000/admin/users/sellers", {
+        headers: {
+          authorization: `bearer ${localStorage.getItem("accessToken")}`,
+        },
+      });
       const data = res.json();
       return data;
     },
@@ -20,6 +24,9 @@ const AllSellers = () => {
   const handleSellerDelete = (id) => {
     fetch(`http://localhost:5000/admin/users/sellers/${id}`, {
       method: "DELETE",
+      headers: {
+        authorization: `bearer ${localStorage.getItem("accessToken")}`,
+      },
     })
       .then((res) => res.json())
       .then((data) => {
@@ -33,6 +40,9 @@ const AllSellers = () => {
   const handleSellerVerify = (email) => {
     fetch(`http://localhost:5000/users/seller/${email}`, {
       method: "PUT",
+      headers: {
+        authorization: `bearer ${localStorage.getItem("accessToken")}`,
+      },
     })
       .then((res) => res.json())
       .then((data) => {

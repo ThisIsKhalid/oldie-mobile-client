@@ -7,7 +7,11 @@ const AllBuyers = () => {
   const { data: buyers = [], isLoading, refetch } = useQuery({
     queryKey: ["buyers"],
     queryFn: async () => {
-      const res = await fetch("http://localhost:5000/admin/users/buyers");
+      const res = await fetch("http://localhost:5000/admin/users/buyers", {
+        headers: {
+          authorization: `bearer ${localStorage.getItem("accessToken")}`,
+        },
+      });
       const data = res.json();
       return data;
     },
@@ -15,15 +19,18 @@ const AllBuyers = () => {
 
   const handlebuyerDelete = (id) => {
     fetch(`http://localhost:5000/admin/users/buyers/${id}`, {
-      method: 'DELETE'
+      method: "DELETE",
+      headers: {
+        authorization: `bearer ${localStorage.getItem("accessToken")}`,
+      },
     })
-    .then(res => res.json())
-    .then(data => {
-      if (data.acknowledged) {
-        toast.success("Buyers Deleted!");
-        refetch();
-      }
-    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.acknowledged) {
+          toast.success("Buyers Deleted!");
+          refetch();
+        }
+      });
   };
 
   if (isLoading) {
