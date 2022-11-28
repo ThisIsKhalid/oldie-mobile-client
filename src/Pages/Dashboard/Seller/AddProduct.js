@@ -15,6 +15,8 @@ const AddProduct = () => {
   const date = new Date();
   const navigate = useNavigate();
 
+  const imgHostingKey = process.env.REACT_APP_imgbb_key;
+
   const { data: dbUser = {} } = useQuery({
     queryKey: ["dbUser"],
     queryFn: async () => {
@@ -35,12 +37,12 @@ const AddProduct = () => {
     },
   });
 
-  const getProductsData = (data) => {
+  const handleAddProducts = (data) => {
+    const image = data.img[0];
     const {
       name,
       category,
       condition,
-      img,
       location,
       originalPrice,
       phone,
@@ -48,40 +50,55 @@ const AddProduct = () => {
       purchaseDate,
       description,
     } = data;
-
-    const product = {
-      name,
-      sellerName: user?.displayName,
-      email: user?.email,
-      category: category,
-      condition: condition,
-      img: img,
-      location: location,
-      originalPrice: originalPrice,
-      resalePrice: resalePrice,
-      phone: phone,
-      purchaseDate: purchaseDate,
-      postingDate: date,
-      description,
-      sold: false,
-      reported: false,
-      verified: dbUser?.verified,
-      advertise: false,
-    };
-    // console.log(product);
-
-    fetch("http://localhost:5000/phones", {
+    //-------------photo hosting at imgbb----------------
+    const formData = new FormData();
+    formData.append("image", image);
+    const url = `https://api.imgbb.com/1/upload?key=${imgHostingKey}`;
+    fetch(url, {
       method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(product),
+      body: formData,
     })
       .then((res) => res.json())
-      .then((data) => {
-        if (data.acknowledged) {
-          toast.success("Product Updated Successfully!!");
-          navigate("/dashboard/myproducts");
+      .then((imgData) => {
+        // console.log(imgData.data.display_url);
+        if (imgData.success) {
+          // -------------------product add and send to db----------------
+          const product = {
+            name,
+            sellerName: user?.displayName,
+            email: user?.email,
+            category: category,
+            condition: condition,
+            img: imgData.data.display_url,
+            location: location,
+            originalPrice: originalPrice,
+            resalePrice: resalePrice,
+            phone: phone,
+            purchaseDate: purchaseDate,
+            postingDate: date,
+            description,
+            sold: false,
+            reported: false,
+            verified: dbUser?.verified,
+            advertise: false,
+          };
+
+          console.log(product);
+
+          fetch("http://localhost:5000/phones", {
+            method: "POST",
+            headers: {
+              "content-type": "application/json",
+            },
+            body: JSON.stringify(product),
+          })
+            .then((res) => res.json())
+            .then((data) => {
+              if (data.acknowledged) {
+                toast.success("Product Updated Successfully!!");
+                navigate("/dashboard/myproducts");
+              }
+            });
         }
       });
   };
@@ -91,7 +108,7 @@ const AddProduct = () => {
       <div className="w-96 lg:w-full p-7 mx-2 lg:mx-10 ">
         <h1 className="text-3xl font-semibold text-secondary">Add Product</h1>
 
-        <form onSubmit={handleSubmit(getProductsData)}>
+        <form onSubmit={handleSubmit(handleAddProducts)}>
           <div className="flex lg:flex-row flex-col gap-5">
             <div className="lg:w-1/2">
               <div className="form-control w-full max-w-xs">
@@ -160,10 +177,11 @@ const AddProduct = () => {
                 </label>
                 <input
                   {...register("phone", {
-                    required: "Please give your 9 digit phone number",
+                    required: "Minimum 9 digit!!",
                     pattern: {
-                      value: /[1-9]{9}/,
+                      value: /[1-9]/,
                     },
+                    minLength: 9,
                   })}
                   className="input input-bordered w-full max-w-xs"
                 />
@@ -218,27 +236,14 @@ const AddProduct = () => {
 
               <div className="form-control w-full max-w-xs">
                 <label className="label">
-                  <span className="label-text">Image</span>
+                  <span className="label-text">Photo</span>
                 </label>
                 <input
-                  type="text"
-                  {...register("img", {
-                    required: true,
-                  })}
-                  className="input input-bordered w-full max-w-xs"
+                  type="file"
+                  {...register("img", { required: true })}
+                  className="input w-full max-w-xs -ml-3"
                 />
               </div>
-
-              {/* <div className="form-control w-full max-w-xs">
-          <label className="label">
-            <span className="label-text">Photo</span>
-          </label>
-          <input
-            type="file"
-            {...register("img", { required: true })}
-            className="input w-full max-w-xs -ml-3"
-          />
-        </div> */}
             </div>
           </div>
           <input
