@@ -1,10 +1,12 @@
 import React, { useContext } from "react";
 import { toast } from "react-toastify";
 import { AuthContext } from "../../Context/AuthProvider";
+import useUsers from "../../hooks/useUsers";
 
 const BookingModal = ({ product, setProduct }) => {
   const { user } = useContext(AuthContext);
   const { _id, name, img, resalePrice } = product;
+  const {isBuyer} = useUsers(user?.email);
 
   const handleSubmitModal = (event) => {
     event.preventDefault();
@@ -12,7 +14,7 @@ const BookingModal = ({ product, setProduct }) => {
     const phone = form.phone.value;
     const location = form.location.value;
 
-    if(user){
+    if(user && isBuyer){
       const orderData = {
         email: user?.email,
         title: name,
@@ -39,7 +41,7 @@ const BookingModal = ({ product, setProduct }) => {
           }
         });
     } else {
-      toast.error("Please Login")
+      toast.error("Please Login as a Buyer!!")
     }
   };
   return (
