@@ -25,7 +25,7 @@ const Newsletter = () => {
               alt="email illustration vector art"
             />
           </div>
-          <div className="w-full lg:w-1/2">
+          <div className="w-full lg:w-1/2 text-center">
             <div className="lg:max-w-lg">
               <h1 className="text-2xl font-semibold text-gray-900 lg:text-3xl">
                 Subscribe To The{" "}
@@ -49,11 +49,11 @@ const Newsletter = () => {
                   name="email"
                   id="email"
                   type="email"
-                  className="px-4 py-2 text-gray-800 bg-gray-100 border rounded-md  focus:border-blue-400 focus:outline-none focus:ring focus:ring-opacity-40 focus:ring-blue-300"
+                  className="px-4 py-2 text-gray-800 bg-gray-300 border rounded-md  focus:border-gray-200 focus:outline-none focus:ring focus:ring-opacity-40 focus:ring-secondary"
                   placeholder="Email Address"
                 />
 
-                <button className="w-full px-6 py-2.5 text-sm font-medium tracking-wider text-white uppercase transition-colors duration-300 transform bg-blue-600 rounded-lg lg:w-auto lg:mx-4 hover:bg-blue-500 focus:outline-none focus:bg-blue-500">
+                <button className="w-full px-6 py-2.5 text-sm font-medium tracking-wider text-white uppercase transition-colors duration-300 transform bg-primary rounded-lg lg:w-auto lg:mx-4 focus:outline-none focus:bg-blue-500">
                   Subscribe
                 </button>
               </form>

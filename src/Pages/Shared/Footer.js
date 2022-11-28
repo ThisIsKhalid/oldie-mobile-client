@@ -4,7 +4,7 @@ import img from '../../Assets/mobile-app (1).png'
 
 const Footer = () => {
     return (
-      <footer className="footer p-10 bg-gradient-to-r from-slate-100 to-slate-300 text-gray-900">
+      <footer className="footer grid grid-cols-2 md:grid-cols-4 items-center gap-5 p-10 bg-gradient-to-r from-slate-100 to-slate-300 text-gray-900">
         <div>
           <img className="w-16" src={img} alt="" />
           <p className="text-xl font-bold">

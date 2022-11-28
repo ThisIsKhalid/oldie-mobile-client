@@ -83,8 +83,6 @@ const AddProduct = () => {
             advertise: false,
           };
 
-          console.log(product);
-
           fetch("http://localhost:5000/phones", {
             method: "POST",
             headers: {
@@ -177,7 +175,7 @@ const AddProduct = () => {
                 </label>
                 <input
                   {...register("phone", {
-                    required: "Minimum 9 digit!!",
+                    required: "Minimum 9 digit is needed!!",
                     pattern: {
                       value: /[1-9]/,
                     },

@@ -20,9 +20,9 @@ const Phone = ({ phoneDetails, setProduct }) => {
     verified,
   } = phoneDetails;
   return (
-    <div className="card card-compact bg-gray-100 shadow-xl border border-gray-100">
+    <div className="card card-compact bg-gray-100 shadow-xl border border-gray-200">
       <figure>
-        <img className="w-full" src={img} alt="Shoes" />
+        <img className="w-1/2 pt-3" src={img} alt="Shoes" />
       </figure>
       <div className="card-body text-gray-900">
         <h2 className="text-2xl font-semibold text-accent">{name}</h2>
