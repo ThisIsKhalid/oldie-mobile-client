@@ -1,12 +1,13 @@
 import { toast } from "react-toastify";
 
 export const saveUserInDB = (name, email, role, setUserEmail) => {
+
   const user = { name, email, role, verified: false };
+
   fetch("http://localhost:5000/users", {
     method: "POST",
     headers: {
       "content-type": "application/json",
-      authorization: `bearer ${localStorage.getItem("accessToken")}`,
     },
     body: JSON.stringify(user),
   })

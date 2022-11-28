@@ -1,8 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import { GoCheck } from "react-icons/go";
+import { toast } from "react-toastify";
+import { AuthContext } from "../../Context/AuthProvider";
+import useUsers from "../../hooks/useUsers";
 
 const Phone = ({ phoneDetails, setProduct }) => {
+  const { user } = useContext(AuthContext);
+  const { isBuyer } = useUsers(user?.email);
   const {
+    _id,
     name,
     sellerName,
     category,
@@ -19,6 +25,26 @@ const Phone = ({ phoneDetails, setProduct }) => {
     reported,
     verified,
   } = phoneDetails;
+
+  const handleReportAdmin = (id) => {
+    if (user && isBuyer) {
+      fetch(`http://localhost:5000/product/reported/${id}`, {
+        method: "PUT",
+        headers: {
+          authorization: `bearer ${localStorage.getItem("accessToken")}`,
+        },
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.modifiedCount > 0 || data.upsertedCount > 0) {
+            toast.success("Product Reported!");
+          }
+        });
+    } else {
+      toast.error("Please login as a buyer!!");
+    }
+  };
+
   return (
     <div className="card card-compact bg-gray-100 shadow-xl border border-gray-200">
       <figure>
@@ -63,7 +89,12 @@ const Phone = ({ phoneDetails, setProduct }) => {
           >
             Book Now
           </label>
-          <button className="btn btn-outline btn-error btn-sm">Report to Admin</button>
+          <button
+            onClick={() => handleReportAdmin(_id)}
+            className="btn btn-outline btn-error btn-sm"
+          >
+            Report to Admin
+          </button>
         </div>
       </div>
     </div>

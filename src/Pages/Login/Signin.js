@@ -7,11 +7,6 @@ import { AuthContext } from "../../Context/AuthProvider";
 import useToken from "../../hooks/useToken";
 
 const Signin = () => {
-  const {
-    register,
-    formState: { errors },
-    handleSubmit,
-  } = useForm();
   const { logIn, googleSignIn } = useContext(AuthContext);
   const [userEmail, setUserEmail] = useState("");
   const token = useToken(userEmail);
@@ -19,6 +14,11 @@ const Signin = () => {
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
 
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+  } = useForm();
 
   if (token) {
     navigate(from, { replace: true });
@@ -29,7 +29,7 @@ const Signin = () => {
       .then((res) => {
         toast.success(`Welcome back ${res.user.displayName}`);
         setUserEmail(data.email);
-        e.target.reset();
+        // e.target.reset();
       })
       .catch((err) => {
         toast.error(err.message);
@@ -40,7 +40,9 @@ const Signin = () => {
     googleSignIn()
       .then((res) => {
         const user = res.user;
-        saveUserInDB(user.displayName, user.email, "Buyer", setUserEmail);
+        if (user) {
+          saveUserInDB(user.displayName, user.email, "Buyer", setUserEmail);
+        }
       })
       .catch((err) => toast.error(err.message));
   };
