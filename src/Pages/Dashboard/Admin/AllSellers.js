@@ -48,8 +48,8 @@ const AllSellers = () => {
   }
   return (
     <div className="overflow-x-auto w-full">
-      <h1 className="text-3xl font-bold text-center text-primary my-5">
-        All Sellers
+      <h1 className="text-3xl font-bold text-primary my-5">
+        All Sellers :
       </h1>
       <table className="table w-full rounded-none">
         <thead>
