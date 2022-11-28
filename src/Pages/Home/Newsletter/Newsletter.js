@@ -25,7 +25,7 @@ const Newsletter = () => {
               alt="email illustration vector art"
             />
           </div>
-          <div className="w-full lg:w-1/2 text-center">
+          <div className="w-full lg:w-1/2 text-center lg:text-left">
             <div className="lg:max-w-lg">
               <h1 className="text-2xl font-semibold text-gray-900 lg:text-3xl">
                 Subscribe To The{" "}
