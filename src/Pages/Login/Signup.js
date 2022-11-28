@@ -1,9 +1,10 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { saveUserInDB } from "../../Components/saveUserInDB";
 import { AuthContext } from "../../Context/AuthProvider";
+import useToken from "../../hooks/useToken";
 
 const Signup = () => {
   const {
@@ -13,15 +14,20 @@ const Signup = () => {
   } = useForm();
   const { createUser, updateUserProfile, googleSignIn } =
     useContext(AuthContext);
+  const [userEmail, setUserEmail] = useState("");
+  const token = useToken(userEmail);
   const navigate = useNavigate();
+
+  if (token) {
+    navigate("/");
+  }
 
   const handleRegister = (data, e) => {
     createUser(data.email, data.password)
       .then(() => {
         updateUserProfile(data.name)
           .then(() => {
-            saveUserInDB(data.name, data.email, data.role);
-            navigate("/");
+            saveUserInDB(data.name, data.email, data.role, setUserEmail);
             e.target.reset();
           })
           .catch((err) => {
@@ -37,7 +43,7 @@ const Signup = () => {
     googleSignIn()
       .then((res) => {
         const user = res.user;
-        saveUserInDB(user.displayName, user.email, "Buyer");
+        saveUserInDB(user.displayName, user.email, "Buyer", setUserEmail);
       })
       .catch((err) => toast.error(err.message));
   };

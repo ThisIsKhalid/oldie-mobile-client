@@ -1,9 +1,10 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { saveUserInDB } from "../../Components/saveUserInDB";
 import { AuthContext } from "../../Context/AuthProvider";
+import useToken from "../../hooks/useToken";
 
 const Signin = () => {
   const {
@@ -12,15 +13,22 @@ const Signin = () => {
     handleSubmit,
   } = useForm();
   const { logIn, googleSignIn } = useContext(AuthContext);
+  const [userEmail, setUserEmail] = useState("");
+  const token = useToken(userEmail);
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
+
+
+  if (token) {
+    navigate(from, { replace: true });
+  }
 
   const handleLogin = (data, e) => {
     logIn(data.email, data.password)
       .then((res) => {
         toast.success(`Welcome back ${res.user.displayName}`);
-        navigate(from, { replace: true });
+        setUserEmail(data.email);
         e.target.reset();
       })
       .catch((err) => {
@@ -32,8 +40,7 @@ const Signin = () => {
     googleSignIn()
       .then((res) => {
         const user = res.user;
-        saveUserInDB(user.displayName, user.email, "Buyer");
-        navigate(from, { replace: true });
+        saveUserInDB(user.displayName, user.email, "Buyer", setUserEmail);
       })
       .catch((err) => toast.error(err.message));
   };
