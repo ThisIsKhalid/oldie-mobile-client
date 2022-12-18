@@ -4,9 +4,9 @@ import phoneBuy from "../../../Assets/phone-buy.svg";
 
 const Banner = () => {
   return (
-    <div className="carousel w-full">
+    <div className="carousel w-full h-[550px]">
       <div id="slide1" className="carousel-item relative w-full">
-        <div className="bg-gradient-to-r from-accent to-error  w-full flex md:flex-row flex-col-reverse justify-center items-center px-5">
+        <div className="bg-[#EE7444]  w-full flex md:flex-row flex-col-reverse justify-center items-center px-5">
           <div className="lg:w-1/2 lg:mb-0 mb-10">
             <h1 className=" text-4xl font-medium">
               Buy{" "}
@@ -16,7 +16,7 @@ const Banner = () => {
               from anywhere.
             </h1>
           </div>
-          <img className="h-96" src={phoneBuy} alt="/" />
+          <img className="h-full" src={phoneBuy} alt="/" />
         </div>
         <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
           <a href="#slide2" className="btn btn-sm btn-circle btn-outline">
@@ -36,7 +36,7 @@ const Banner = () => {
               from anywhere.
             </h1>
           </div>
-          <img className="h-96" src={phoneSell} alt="/" />
+          <img className="h-full" src={phoneSell} alt="/" />
         </div>
 
         <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
