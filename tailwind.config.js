@@ -5,15 +5,12 @@ module.exports = {
     themes: [
       {
         mytheme: {
-          primary: "#2D5362",
-          secondary: "#208489",
-          accent: "#EEAF3A",
-          neutral: "#291334",
-          "base-100": "#FAF7F5",
-          info: "#3ABFF8",
-          success: "#36D399",
-          warning: "#FBBD23",
-          error: "#D7431D",
+          primary: "#006d77",
+          secondary: "#2a9d8f",
+          warning: "#e9c46a",
+          accent: "#f4a261",
+          error: "#e76f51",
+          "base-100": "#FFFFFF",
         },
       },
     ],
@@ -21,5 +18,5 @@ module.exports = {
   theme: {
     extend: {},
   },
-  plugins: [require("daisyui")],
+  plugins: [require("daisyui"), require("tailwind-scrollbar-hide")],
 };

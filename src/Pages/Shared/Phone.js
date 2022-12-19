@@ -81,7 +81,7 @@ const Phone = ({ phoneDetails, setProduct }) => {
           <div className="w-1/2">
             <p>Location: {location}</p>
             <p>Posting Date: {`${postingDate}`.slice(0, 10)}</p>
-            <p>Description: {description}</p>
+            <p>Description: {`${description.slice(0,60)}...`}</p>
           </div>
         </div>
         <div className="mt-2 flex justify-between items-end">

@@ -39,11 +39,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/categories/:brand",
-        element: (
-          <PrivateRoutes>
-            <PhonesByCategory></PhonesByCategory>
-          </PrivateRoutes>
-        ),
+        element: <PhonesByCategory></PhonesByCategory>,
       },
       {
         path: "/signin",

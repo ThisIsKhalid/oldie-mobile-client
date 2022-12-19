@@ -39,7 +39,7 @@ const Home = () => {
           <h1 className="text-gray-700 text-3xl font-bold text-center mb-5">
             Featured Products
           </h1>
-          <div className="grid lg:grid-cols-2 grid-cols-1 gap-10 mx-5">
+          <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-10 mx-5">
             {advertisedPhones?.map((phoneDetails) => (
               <Phone
                 key={phoneDetails._id}

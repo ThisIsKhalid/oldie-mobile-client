@@ -32,7 +32,7 @@ const PhonesByCategory = () => {
           {brand} (<small>{phones.length}</small>)
         </span>
       </h1>
-      <div className="grid md:grid-cols-2 gap-5 my-10 px-5">
+      <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-5 my-10 px-5">
         {phones?.map((phone) => (
           <Phone
             key={phone._id}
