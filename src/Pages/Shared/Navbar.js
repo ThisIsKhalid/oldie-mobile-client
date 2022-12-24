@@ -38,44 +38,39 @@ const Navbar = () => {
   );
 
   return (
-    <div className="navbar justify-between lg:px-10">
-      <div className="navbar-start">
-        <div className="dropdown">
-          <label tabIndex={1} className="btn btn-ghost lg:hidden">
-            <TfiViewList className="text-xl text-gray-900" />
-          </label>
-          <ul
-            tabIndex={2}
-            className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
-          >
+    <section>
+      <div className="navbar justify-between lg:px-10">
+        <div className="navbar-start">
+          <div className="dropdown">
+            <label tabIndex={1} className="btn btn-ghost lg:hidden">
+              <TfiViewList className="text-xl text-gray-900" />
+            </label>
+            <ul
+              tabIndex={2}
+              className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52 text-black"
+            >
+              {menuItem}
+            </ul>
+          </div>
+          <div className="flex items-center border-2 border-black p-1 rounded my-1">
+            <h1 className="bg-black text-white font-bold py-1 px-3 text-lg tracking-widest rounded-l">OLDIE</h1>
+            <h1 className="text-black font-bold py-1 px-3 text-lg tracking-widest">STORE</h1>
+          </div>
+        </div>
+        <div className="navbar-center hidden lg:flex">
+          <ul className="flex gap-5 p-0 text-lg font-semibold text-black">
             {menuItem}
           </ul>
         </div>
-        <div className="flex items-center">
-          <img className="w-10" src={img} alt="" />
-          <Link to="/" className="font-bold font-mono">
-            <span className="text-3xl text-error">
-              O<span className="text-lg">LDIE</span>
-            </span>{" "}
-            <span className="text-3xl text-secondary">
-              M<span className="text-lg">OBILE</span>
-            </span>
-          </Link>
-        </div>
+        <label
+          htmlFor="dashboard-drawer"
+          tabIndex={3}
+          className="btn btn-ghost lg:hidden"
+        >
+          <TfiViewListAlt className="text-xl" />
+        </label>
       </div>
-      <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal p-0 text-lg font-semibold text-gray-700">
-          {menuItem}
-        </ul>
-      </div>
-      <label
-        htmlFor="dashboard-drawer"
-        tabIndex={3}
-        className="btn btn-ghost lg:hidden"
-      >
-        <TfiViewListAlt className="text-xl" />
-      </label>
-    </div>
+    </section>
   );
 };
 

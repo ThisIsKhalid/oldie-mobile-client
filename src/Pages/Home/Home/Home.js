@@ -35,8 +35,8 @@ const Home = () => {
 
       {/* ----------advertised section----------------- */}
       {advertisedPhones?.length && (
-        <section className="my-10">
-          <h1 className="text-gray-700 text-3xl font-bold text-center mb-5">
+        <section className="py-20">
+          <h1 className="text-black uppercase text-3xl font-medium text-center mb-10">
             Featured Products
           </h1>
           <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-10 mx-5">
