@@ -1,18 +1,16 @@
 import React from "react";
-import { EffectFade, Autoplay } from "swiper";
+import { Link } from "react-router-dom";
+import { Autoplay, EffectFade } from "swiper";
 import "swiper/css";
+import "swiper/css/effect-fade";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import "swiper/css/effect-fade";
 import { Swiper, SwiperSlide } from "swiper/react";
-import phoneSell from "../../../Assets/phone sell.svg";
-import phoneBuy from "../../../Assets/phone-buy.svg";
 import banner1 from "../../../Assets/banner1.jpg";
 import banner2 from "../../../Assets/banner2.jpg";
 import banner3 from "../../../Assets/banner3.jpg";
 import banner4 from "../../../Assets/banner4.jpg";
 import banner5 from "../../../Assets/banner5.jpg";
-import { Link } from "react-router-dom";
 
 const Banner = () => {
   return (
@@ -40,18 +38,6 @@ const Banner = () => {
               </Link>
             </div>
           </div>
-          {/* <div className="bg-gradient-to-r from-accent to-error  w-full flex md:flex-row flex-col-reverse justify-center items-center px-5 h-[500px]">
-            <div className="lg:w-1/2 lg:mb-0 mb-10">
-              <h1 className=" text-4xl font-medium">
-                Buy{" "}
-                <span className="text uppercase font-bold text-white">
-                  phones
-                </span>{" "}
-                from anywhere.
-              </h1>
-            </div>
-            <img className="h-full" src={phoneBuy} alt="/" />
-          </div> */}
         </SwiperSlide>
         <SwiperSlide>
           <div className="h-[550px] relative">
@@ -70,22 +56,12 @@ const Banner = () => {
               </Link>
             </div>
           </div>
-          {/* <div className="bg-gradient-to-r from-secondary to-primary  w-full flex md:flex-row flex-col-reverse justify-center items-center px-5 h-[500px]">
-            <div className="lg:w-1/2 lg:mb-0 mb-10">
-              <h1 className=" text-4xl text-white font-medium">
-                Sell{" "}
-                <span className="text-accent uppercase font-bold">phones</span>{" "}
-                from anywhere.
-              </h1>
-            </div>
-            <img className="h-full" src={phoneSell} alt="/" />
-          </div> */}
         </SwiperSlide>
         <SwiperSlide>
           <div className="h-[550px] relative">
             <img className="h-full w-full object-cover" src={banner3} alt="" />
             <h1 className="absolute top-1/2 left-20 text-white">
-              hiiiiiiiiiiiiiii
+              
             </h1>
           </div>
         </SwiperSlide>
@@ -93,7 +69,7 @@ const Banner = () => {
           <div className="h-[550px] relative">
             <img className="h-full w-full object-cover" src={banner4} alt="" />
             <h1 className="absolute top-1/2 left-20 text-white">
-              hiiiiiiiiiiiiiii
+              
             </h1>
           </div>
         </SwiperSlide>
@@ -101,7 +77,7 @@ const Banner = () => {
           <div className="h-[550px] relative">
             <img className="h-full w-full object-cover" src={banner5} alt="" />
             <h1 className="absolute top-1/2 left-20 text-white">
-              hiiiiiiiiiiiiiii
+              
             </h1>
           </div>
         </SwiperSlide>

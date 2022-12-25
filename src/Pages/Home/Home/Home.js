@@ -7,6 +7,7 @@ import Phone from "../../Shared/Phone";
 import Banner from "../Banner/Banner";
 import Categories from "../Categories/Categories";
 import Newsletter from "../Newsletter/Newsletter";
+import Services from "../Services/Services";
 import TopOffer from "../TopOffer/TopOffer";
 
 const Home = () => {
@@ -32,7 +33,7 @@ const Home = () => {
     <>
       <Banner></Banner>
 
-      {/* <Categories></Categories> */}
+      <Categories></Categories>
 
       <TopOffer></TopOffer>
 
@@ -56,6 +57,8 @@ const Home = () => {
       {product && (
         <BookingModal product={product} setProduct={setProduct}></BookingModal>
       )}
+
+      <Services></Services>
 
       <Newsletter></Newsletter>
     </>
