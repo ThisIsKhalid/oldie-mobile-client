@@ -38,7 +38,7 @@ const Navbar = () => {
   );
 
   return (
-    <section>
+    <section className="bg-slate-100">
       <div className="navbar justify-between lg:px-10">
         <div className="navbar-start">
           <div className="dropdown">

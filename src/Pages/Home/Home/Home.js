@@ -7,6 +7,7 @@ import Phone from "../../Shared/Phone";
 import Banner from "../Banner/Banner";
 import Categories from "../Categories/Categories";
 import Newsletter from "../Newsletter/Newsletter";
+import TopOffer from "../TopOffer/TopOffer";
 
 const Home = () => {
   const { loading } = useContext(AuthContext);
@@ -31,13 +32,15 @@ const Home = () => {
     <>
       <Banner></Banner>
 
-      <Categories></Categories>
+      {/* <Categories></Categories> */}
+
+      <TopOffer></TopOffer>
 
       {/* ----------advertised section----------------- */}
       {advertisedPhones?.length && (
-        <section className="py-20">
-          <h1 className="text-black uppercase text-3xl font-medium text-center mb-10">
-            Featured Products
+        <section className="py-14">
+          <h1 className="text-black uppercase text-3xl font-medium text-center mb-10 underline">
+            Featured Phones
           </h1>
           <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-10 mx-5">
             {advertisedPhones?.map((phoneDetails) => (
