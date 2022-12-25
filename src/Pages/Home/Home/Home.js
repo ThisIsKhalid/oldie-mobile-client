@@ -7,6 +7,7 @@ import Phone from "../../Shared/Phone";
 import Banner from "../Banner/Banner";
 import Categories from "../Categories/Categories";
 import Newsletter from "../Newsletter/Newsletter";
+import RepairService from "../RepairService/RepairService";
 import Services from "../Services/Services";
 import TopOffer from "../TopOffer/TopOffer";
 
@@ -58,6 +59,8 @@ const Home = () => {
         <BookingModal product={product} setProduct={setProduct}></BookingModal>
       )}
 
+      <RepairService></RepairService>
+      
       <Services></Services>
 
       <Newsletter></Newsletter>
