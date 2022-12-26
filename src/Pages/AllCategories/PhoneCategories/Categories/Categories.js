@@ -24,7 +24,7 @@ const Categories = () => {
     <section className=" py-20">
       <div className=" container mx-auto">
         <h1 className="text-3xl font-medium text-black mb-10 uppercase text-center underline">
-          Best Phone Brands
+          Select Mobile Phone Brand
         </h1>
         <div className="grid lg:grid-cols-7 md:grid-cols-6 sm:grid-cols-5 grid-cols-3 gap-5 px-3">
           {categories?.map((category) => (

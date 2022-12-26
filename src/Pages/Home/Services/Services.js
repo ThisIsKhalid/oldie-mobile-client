@@ -3,7 +3,7 @@ import { SlClock, SlLock, SlPlane, SlUser } from "react-icons/sl";
 
 const Services = () => {
   return (
-    <section className="container mx-auto py-10">
+    <section className="container mx-auto py-10 px-5">
       <div className="grid lg:grid-cols-4 grid-cols-2 gap-5 ">
         <div className="rounded-r-md flex flex-col gap-2 items-center justify-center text-center shadow-md bg-gray-50 p-5 border-l-2 border-black">
           <div className="text-3xl text-black">
