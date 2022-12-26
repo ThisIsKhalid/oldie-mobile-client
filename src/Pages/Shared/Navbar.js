@@ -13,6 +13,9 @@ const Navbar = () => {
         <Link to="/home">Home</Link>
       </li>
       <li>
+        <Link to="/allcategories">Categories</Link>
+      </li>
+      <li>
         <Link to="/blog">Blog</Link>
       </li>
       {user?.email ? (
@@ -52,9 +55,17 @@ const Navbar = () => {
               {menuItem}
             </ul>
           </div>
-          <div className="flex items-center border-2 border-black p-1 rounded my-1">
-            <h1 className="bg-black text-white font-bold py-1 px-3 text-lg tracking-widest rounded-l">OLDIE</h1>
-            <h1 className="text-black font-bold py-1 px-3 text-lg tracking-widest">STORE</h1>
+          <div>
+            <Link to='/'>
+              <div className="flex items-center border-2 border-black p-1 rounded my-1">
+                <h1 className="bg-black text-white font-bold py-1 px-3 text-lg tracking-widest rounded-l">
+                  OLDIE
+                </h1>
+                <h1 className="text-black font-bold py-1 px-3 text-lg tracking-widest">
+                  STORE
+                </h1>
+              </div>
+            </Link>
           </div>
         </div>
         <div className="navbar-center hidden lg:flex">

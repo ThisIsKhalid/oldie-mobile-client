@@ -43,7 +43,7 @@ const RepairService = () => {
             </p>
           </div>
           {/* -------------------cards------------------- */}
-          <div className="grid lg:grid-cols-3 gap-5">
+          <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-5">
             {services.map((service) => (
               <div
                 key={service.id}

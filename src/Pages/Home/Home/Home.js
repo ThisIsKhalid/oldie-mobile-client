@@ -5,7 +5,6 @@ import Loading from "../../Others/Loading";
 import BookingModal from "../../Shared/BookingModal";
 import Phone from "../../Shared/Phone";
 import Banner from "../Banner/Banner";
-import Categories from "../Categories/Categories";
 import Newsletter from "../Newsletter/Newsletter";
 import RepairService from "../RepairService/RepairService";
 import Services from "../Services/Services";
@@ -34,8 +33,6 @@ const Home = () => {
     <>
       <Banner></Banner>
 
-      <Categories></Categories>
-
       <TopOffer></TopOffer>
 
       {/* ----------advertised section----------------- */}
@@ -60,7 +57,7 @@ const Home = () => {
       )}
 
       <RepairService></RepairService>
-      
+
       <Services></Services>
 
       <Newsletter></Newsletter>
