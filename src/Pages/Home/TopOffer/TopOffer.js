@@ -8,7 +8,7 @@ import phone from "../../../Assets/phone.jpg";
 const TopOffer = () => {
   return (
     <div className="container mx-auto py-14">
-      <h1 className="text-black uppercase text-3xl font-medium text-center mb-10 underline">
+      <h1 className="text-black uppercase text-3xl font-medium text-center mb-10 ">
         Trending Products
       </h1>
       <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-2 px-5">

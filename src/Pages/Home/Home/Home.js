@@ -39,7 +39,7 @@ const Home = () => {
       {/* ----------advertised section----------------- */}
       {advertisedPhones?.length && (
         <section className="py-14">
-          <h1 className="text-black uppercase text-3xl font-medium text-center mb-10 underline">
+          <h1 className="text-black uppercase text-3xl font-medium text-center mb-10 ">
             Featured Phones
           </h1>
           <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-10 mx-5">
@@ -59,9 +59,9 @@ const Home = () => {
 
       <RepairService></RepairService>
 
-      <Services></Services>
-
       <MobileParts></MobileParts>
+
+      <Services></Services>
 
       <Newsletter></Newsletter>
     </>

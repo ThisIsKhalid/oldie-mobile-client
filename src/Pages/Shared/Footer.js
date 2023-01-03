@@ -1,16 +1,22 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import img from '../../Assets/mobile-app (1).png'
 
 const Footer = () => {
     return (
-      <footer className="footer grid grid-cols-2 md:grid-cols-4 items-center gap-5 p-10 bg-gradient-to-r from-slate-100 to-slate-300 text-gray-900">
+      <footer className="footer grid grid-cols-2 md:grid-cols-4 items-center gap-5 p-10 bg-slate-100 text-gray-900">
         <div>
-          <img className="w-16" src={img} alt="" />
-          <p className="text-xl font-bold">
-            <span className="text-error">Oldie</span>{" "}
-            <span className="text-secondary">Mobile</span>
-          </p>
+          <div>
+            <Link to="/">
+              <div className="flex items-center border-2 border-black p-1 rounded my-1">
+                <h1 className="bg-black text-white font-bold py-1 px-3 text-md tracking-widest rounded-l">
+                  TECH
+                </h1>
+                <h1 className="text-black font-bold py-1 px-3 text-md tracking-widest">
+                  STORE
+                </h1>
+              </div>
+            </Link>
+          </div>
           <p>Providing reliable service since 2022</p>
         </div>
         <div>

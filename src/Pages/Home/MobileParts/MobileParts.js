@@ -64,17 +64,17 @@ const MobileParts = () => {
 
     return (
       <section className="bg-slate-100 py-10">
-        <h1 className="text-black text-center uppercase text-3xl font-medium underline mb-10">
+        <h1 className="text-black text-center uppercase text-3xl font-medium mb-10">
           Mobile Parts
         </h1>
         <div className="container mx-auto grid lg:grid-cols-4 md:grid-cols-3 grid-cols-1 gap-5 px-5">
           {mobileParts.map((parts) => (
             <div
               key={parts.id}
-              className="max-w-lg p-4 shadow-md text-gray-800 bg-white rounded-md relative h-80"
+              className="max-w-lg p-4 shadow-md text-gray-800 bg-white/70 rounded-md relative h-[340px]"
             >
               <div className="space-y-4">
-                <div className="h-40 flex items-center justify-center border border-gray-400 p-2 rounded">
+                <div className="h-40 flex items-center justify-center border-b border-gray-400 p-2">
                   <img src={parts.img} alt="" className="rounded-md h-full" />
                 </div>
                 <div>
